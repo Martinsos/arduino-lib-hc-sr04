@@ -1,2 +1,2 @@
-UltraSonicDistanceSensor        KEYWORD1
-measureDistanceCm               KEYWORD2
+UltraSonicDistanceSensor	KEYWORD1
+measureDistanceCm	KEYWORD2
