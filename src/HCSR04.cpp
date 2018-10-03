@@ -25,7 +25,7 @@ double UltraSonicDistanceSensor::measureDistanceCm() {
     // Measure the length of echo signal, which is equal to the time needed for sound to go there and back.
     unsigned long durationMicroSec = pulseIn(echoPin, HIGH);
     double distanceCm = durationMicroSec / 2.0 * 0.0343;
-    if (distanceCm == 0 || distanceCm > 400) {
+    if (distanceCm == 0 || distanceCm > 600) {
         return -1.0 ;
     } else {
         return distanceCm;
