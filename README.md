@@ -7,8 +7,10 @@ HC-SR04 is an ultrasonic sensor that measures distances from 2 to 400cm.
 This is a simple library for it!
 
 ## Usage
-Sensor is initialized by creating instance of class UltraSonicDistanceSensor and providing trigger and echo pins:
-`UltraSonicDistanceSensor sensor(triggerPin, echoPin);`.
+Sensor is initialized by creating instance of class UltraSonicDistanceSensor and providing trigger and echo pins.
+```c
+UltraSonicDistanceSensor sensor(triggerPin, echoPin);
+```
 
 Then, to measure the distance, you just call `measureDistanceCm()`, which will return distance in centimeters (double). If distance is larger than 400cm, it will return negative value.
 
@@ -22,7 +24,7 @@ In this simple example, we need to connect sensors pins like this:
 - echo to digital pin 12
 - gnd to gnd
 
-```
+```c
 #include <HCSR04.h>
 
 // Initialize sensor that uses digital pins 13 and 12.
