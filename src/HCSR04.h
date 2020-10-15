@@ -30,6 +30,9 @@ class UltraSonicDistanceSensor {
      * @returns Distance in centimeters, or negative value if distance is greater than 400cm.
      */
     double measureDistanceCm(float temperature);
+	
+	double GetAvg();
+	double GetAvg(int howLong,float temperature);
  private:
     int triggerPin, echoPin;
 };
