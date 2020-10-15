@@ -38,3 +38,14 @@ double UltraSonicDistanceSensor::measureDistanceCm(float temperature) {
         return distanceCm;
     }
 }
+
+double UltraSonicDistanceSensor::GetAvg(){
+	return GetAvg(10,19.307);
+}
+double UltraSonicDistanceSensor::GetAvg(int howLong,float temperature){
+	double avg = 0.0;
+	for(int x = 0;x <= howLong;++x){
+		avg += measureDistanceCm(temperature);
+	}
+	return (avg / static_cast<double>(howLong+1));
+}
