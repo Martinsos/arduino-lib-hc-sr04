@@ -11,8 +11,13 @@ UltraSonicDistanceSensor::UltraSonicDistanceSensor(
     this->triggerPin = triggerPin;
     this->echoPin = echoPin;
     this->maxDistanceCm = maxDistanceCm;
+    this->timeoutMicroSec = 0;
     pinMode(triggerPin, OUTPUT);
     pinMode(echoPin, INPUT);
+}
+
+void UltraSonicDistanceSensor::setTimeoutMicroSec(uint32_t timeoutMicroSec) {
+    this->timeoutMicroSec = timeoutMicroSec;
 }
 
 double UltraSonicDistanceSensor::measureDistanceCm() {
@@ -21,6 +26,8 @@ double UltraSonicDistanceSensor::measureDistanceCm() {
 }
 
 double UltraSonicDistanceSensor::measureDistanceCm(float temperature) {
+    uint32_t maxDistanceDurationMicroSec;
+
     // Make sure that trigger pin is LOW.
     digitalWrite(triggerPin, LOW);
     delayMicroseconds(2);
@@ -30,8 +37,12 @@ double UltraSonicDistanceSensor::measureDistanceCm(float temperature) {
     digitalWrite(triggerPin, LOW);
     double speedOfSoundInCmPerMicroSec = 0.03313 + 0.0000606 * temperature; // Cair ≈ (331.3 + 0.606 ⋅ ϑ) m/s
 
-    // Compute max delay based on max distance with 25% margin in microseconds
-    uint32_t maxDistanceDurationMicroSec = 2.5 * maxDistanceCm / speedOfSoundInCmPerMicroSec;
+    if (timeoutMicroSec > 0) {
+        maxDistanceDurationMicroSec = timeoutMicroSec;
+    } else {
+        // Compute max delay based on max distance with 25% margin in microseconds
+        maxDistanceDurationMicroSec = 2.5 * maxDistanceCm / speedOfSoundInCmPerMicroSec;
+    }
 
     // Measure the length of echo signal, which is equal to the time needed for sound to go there and back.
     unsigned long durationMicroSec = pulseIn(echoPin, HIGH, maxDistanceDurationMicroSec); // can't measure beyond max distance
