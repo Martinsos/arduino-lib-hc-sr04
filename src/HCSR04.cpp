@@ -7,11 +7,11 @@
 #include "HCSR04.h"
 
 UltraSonicDistanceSensor::UltraSonicDistanceSensor(
-        int triggerPin, int echoPin, int maxDistanceCm, uint32_t timeoutMicroSec) {
+        int triggerPin, int echoPin, int maxDistanceCm, uint32_t maxTimeoutMicroSec) {
     this->triggerPin = triggerPin;
     this->echoPin = echoPin;
     this->maxDistanceCm = maxDistanceCm;
-    this->timeoutMicroSec = timeoutMicroSec;
+    this->maxTimeoutMicroSec = maxTimeoutMicroSec;
     pinMode(triggerPin, OUTPUT);
     pinMode(echoPin, INPUT);
 }
@@ -35,8 +35,8 @@ double UltraSonicDistanceSensor::measureDistanceCm(float temperature) {
 
     // Compute max delay based on max distance with 25% margin in microseconds or use absolute timeout
     maxDistanceDurationMicroSec = 2.5 * maxDistanceCm / speedOfSoundInCmPerMicroSec;
-    if (timeoutMicroSec > 0) {
-    	min(maxDistanceDurationMicroSec, timeoutMicroSec);
+    if (maxTimeoutMicroSec > 0) {
+    	min(maxDistanceDurationMicroSec, maxTimeoutMicroSec);
     }
 
     // Measure the length of echo signal, which is equal to the time needed for sound to go there and back.
