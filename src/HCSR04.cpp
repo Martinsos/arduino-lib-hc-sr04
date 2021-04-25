@@ -36,7 +36,7 @@ double UltraSonicDistanceSensor::measureDistanceCm(float temperature) {
     // Compute max delay based on max distance with 25% margin in microseconds or use absolute timeout
     maxDistanceDurationMicroSec = 2.5 * maxDistanceCm / speedOfSoundInCmPerMicroSec;
     if (maxTimeoutMicroSec > 0) {
-    	min(maxDistanceDurationMicroSec, maxTimeoutMicroSec);
+    	maxDistanceDurationMicroSec = min(maxDistanceDurationMicroSec, maxTimeoutMicroSec);
     }
 
     // Measure the length of echo signal, which is equal to the time needed for sound to go there and back.
