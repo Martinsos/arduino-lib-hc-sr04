@@ -14,7 +14,10 @@ class UltraSonicDistanceSensor {
      * @param triggerPin  Digital pin that is used for controlling sensor (output).
      * @param echoPin  Digital pin that is used to get information from sensor (input).
      * @param maxDistanceCm  Maximum distance sensor can measure, defaults to 4m for HC-SR04.
+     *                       Set to maximum measuring distance to reduce measurement time.
      * @param timeoutMicroSec  Set absolute measurement timeout.
+                             Useful if you need measurement will not take longer than some specific time.
+                             This also means that we are limiting max distance it can measure.
      */
     UltraSonicDistanceSensor(int triggerPin, int echoPin, int maxDistanceCm = 400, uint32_t maxTimeoutMicroSec = 0);
 
@@ -27,7 +30,7 @@ class UltraSonicDistanceSensor {
 
     /**
      * Measures distance by sending ultrasonic waves and measuring time it takes them
-     * to return.
+     * to return. Measurement can not excced duration calculated with maxDistanceCm or maxTimeoutMicroSec.
      * @param temperature  Temperature in degrees celsius
      * @returns Distance in centimeters, or negative value if distance is greater than 400cm.
      */
