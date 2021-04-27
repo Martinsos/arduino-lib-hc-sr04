@@ -19,7 +19,7 @@ class UltraSonicDistanceSensor {
                              Useful if you need measurement will not take longer than some specific time.
                              This also means that we are limiting max distance it can measure.
      */
-    UltraSonicDistanceSensor(int triggerPin, int echoPin, int maxDistanceCm = 400, unsigned long maxTimeoutMicroSec = 0);
+    UltraSonicDistanceSensor(byte triggerPin, byte echoPin, unsigned short maxDistanceCm = 400, unsigned long maxTimeoutMicroSec = 0);
 
     /**
      * Measures distance by sending ultrasonic waves and measuring time it takes them
@@ -36,7 +36,8 @@ class UltraSonicDistanceSensor {
      */
     float measureDistanceCm(float temperature);
  private:
-    int triggerPin, echoPin, maxDistanceCm;
+    byte triggerPin, echoPin;
+    unsigned short maxDistanceCm;
     unsigned long maxTimeoutMicroSec;
 };
 

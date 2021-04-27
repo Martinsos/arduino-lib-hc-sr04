@@ -7,7 +7,7 @@
 #include "HCSR04.h"
 
 UltraSonicDistanceSensor::UltraSonicDistanceSensor(
-        int triggerPin, int echoPin, int maxDistanceCm, unsigned long maxTimeoutMicroSec) {
+        byte triggerPin, byte echoPin, unsigned short maxDistanceCm, unsigned long maxTimeoutMicroSec) {
     this->triggerPin = triggerPin;
     this->echoPin = echoPin;
     this->maxDistanceCm = maxDistanceCm;
