@@ -7,9 +7,21 @@ HC-SR04 is an ultrasonic sensor that measures distances from 2 to 400cm.
 This is a simple library for it!
 
 ## Usage
-Sensor is initialized by creating instance of class UltraSonicDistanceSensor and providing trigger and echo pins.
+Sensor is initialized by creating instance of class UltraSonicDistanceSensor and providing trigger and echo pins.  
+This assumes HC-SR04 and set default value for max distance to 4m.
 ```c
 UltraSonicDistanceSensor sensor(triggerPin, echoPin);
+```
+
+If another sensor is used or you want to set another distance according to environment in which sensor is used, you can set a maximum distance in cm.
+```c
+UltraSonicDistanceSensor sensor(triggerPin, echoPin, maxDistanceCm);
+```
+
+In some cases you can want measurement not take more than a certain time to prevent blocking your program too long.  
+An absolute timeout in micro seconds can be set.
+```c
+UltraSonicDistanceSensor sensor(triggerPin, echoPin, maxDistanceCm, absoluteTimeout);
 ```
 
 Then, to measure the distance, you just call `measureDistanceCm()`, which will return distance in centimeters (double). If distance is larger than 400cm, it will return negative value.
@@ -29,8 +41,8 @@ In this simple example, we need to connect sensors pins like this:
 #include <HCSR04.h>
 
 // Initialize sensor that uses digital pins 13 and 12.
-int triggerPin = 13;
-int echoPin = 12;
+const byte triggerPin = 13;
+const byte echoPin = 12;
 UltraSonicDistanceSensor distanceSensor(triggerPin, echoPin);
 
 void setup () {
@@ -39,7 +51,7 @@ void setup () {
 
 void loop () {
     // Every 500 miliseconds, do a measurement using the sensor and print the distance in centimeters.
-    double distance = distanceSensor.measureDistanceCm();
+    float distance = distanceSensor.measureDistanceCm();
     Serial.println(distance);
     delay(500);
 }

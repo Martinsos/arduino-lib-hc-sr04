@@ -30,7 +30,7 @@ class UltraSonicDistanceSensor {
 
     /**
      * Measures distance by sending ultrasonic waves and measuring time it takes them
-     * to return. Measurement can not excced duration calculated with maxDistanceCm or maxTimeoutMicroSec.
+     * to return. Measurement can not exceed duration calculated with maxDistanceCm or maxTimeoutMicroSec.
      * @param temperature  Temperature in degrees celsius
      * @returns Distance in centimeters, or negative value if distance is greater than 400cm.
      */
