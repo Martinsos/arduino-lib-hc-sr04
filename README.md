@@ -7,19 +7,18 @@ HC-SR04 is an ultrasonic sensor that measures distances from 2 to 400cm.
 This is a simple library for it!
 
 ## Usage
-Sensor is initialized by creating instance of class UltraSonicDistanceSensor and providing trigger and echo pins.  
-This assumes HC-SR04 and set default value for max distance to 4m.
+Sensor is initialized by creating instance of class UltraSonicDistanceSensor and providing trigger and echo pins.
 ```c
 UltraSonicDistanceSensor sensor(triggerPin, echoPin);
 ```
 
-If another sensor is used or you want to set another distance according to environment in which sensor is used, you can set a maximum distance in cm.
+Default value for maximum measurement distance is 4m, since HC-SR04 sensor can't measure reliably beyond that.
+However, if you are using another sensor or if you you don't care about distances larger than some value, you can set a maximum distance in cm yourself.
 ```c
 UltraSonicDistanceSensor sensor(triggerPin, echoPin, maxDistanceCm);
 ```
 
-In some cases you can want measurement not take more than a certain time to prevent blocking your program too long.  
-An absolute timeout in micro seconds can be set.
+Besides defining max distance, you can also define max time of measurement (in micro seconds). This is important when you want to ensure your program does not block for longer than specific period of time.
 ```c
 UltraSonicDistanceSensor sensor(triggerPin, echoPin, maxDistanceCm, absoluteTimeout);
 ```
