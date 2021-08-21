@@ -17,7 +17,7 @@ void loop () {
     // Every 1 second, do a measurement using the sensor and print the distance in centimeters.
     sens_temperature.requestTemperatures();
     float temperature = sens_temperature.getTempCByIndex(0);
-    double distance = distanceSensor.measureDistanceCm(temperature);
+    float distance = distanceSensor.measureDistanceCm(temperature);
 
     Serial.print(F("Temperature: "));
     Serial.print(temperature);
