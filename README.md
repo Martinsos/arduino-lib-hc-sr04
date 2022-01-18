@@ -23,7 +23,7 @@ Besides defining max distance, you can also define max time of measurement (in m
 UltraSonicDistanceSensor sensor(triggerPin, echoPin, maxDistanceCm, absoluteTimeout);
 ```
 
-Then, to measure the distance, you just call `measureDistanceCm()`, which will return distance in centimeters (double). If distance is larger than 400cm, it will return negative value.
+Then, to measure the distance, you just call `measureDistanceCm()`, which will return distance in centimeters. If distance is larger than 400cm, it will return negative value.
 
 The calculation assumes a temperature of around 20°C. For improved accuracy you may also provide a temperature yourself, either an average for your location or directly measured from another sensor. The call for a temperature of 3.5°C would as such look like this: `measureDistanceCm(3.5)`.
 
